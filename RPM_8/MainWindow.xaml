@@ -44,14 +44,25 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     
-                    <Button x:Name="btn_Change" Margin="5" Content="Изменить"/>
+                    <Button x:Name="btn_Change" Margin="5" Content="Изменить" Click="btn_Change_Click"/>
                     <Button x:Name="btn_Remove" Grid.Column="1" Margin="5" Content="Удалить"/>
                 </Grid>
             </Grid>
         </GroupBox>
 
         <GroupBox Grid.Row="1" Grid.Column="1" Header="Средняя успеваемость">
-            
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Label Content="Средний балл"/>
+                <TextBlock x:Name="tb_rezult" Grid.Row="1" Margin="3" VerticalAlignment="Center"/>
+
+                <Button x:Name="btn_Calculate" Grid.Row="2" Margin="5" Content="Рассчитать"/>
+            </Grid>
         </GroupBox>
     </Grid>
 </Window>

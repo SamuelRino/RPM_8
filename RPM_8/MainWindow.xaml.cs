@@ -8,6 +8,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static System.Net.Mime.MediaTypeNames;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace RPM_8
 {
@@ -16,9 +18,12 @@ namespace RPM_8
     /// </summary>
     public partial class MainWindow : Window
     {
+        Performance[] performance;
         public MainWindow()
         {
             InitializeComponent();
+            performance = new Performance[5];
+            lbox_Output.ItemsSource = performance;
         }
 
         public struct Performance
@@ -34,7 +39,26 @@ namespace RPM_8
 
             public override string ToString()
             {
-                return $"{Discipline,20}: {Mark}";
+                return $"{Discipline,-20}{Mark}";
+            }
+        }
+
+        private void btn_Change_Click(object sender, RoutedEventArgs e)
+        {
+            if (lbox_Output.SelectedItem != null )
+            {
+                if (!string.IsNullOrEmpty(tb_Discipline.Text) && !string.IsNullOrEmpty(tb_Mark.Text))
+                {
+                    string discipline = tb_Discipline.Text;
+                    int mark = Convert.ToInt32(tb_Mark.Text);
+                    int index = lbox_Output.SelectedIndex;
+
+                    performance[index].Discipline = discipline;
+                    performance[index].Mark = mark;
+
+                    lbox_Output.ItemsSource = null;
+                    lbox_Output.ItemsSource = performance;
+                }
             }
         }
     }   
